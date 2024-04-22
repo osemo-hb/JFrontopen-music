@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Library</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Varela+Round&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<script src="buffer.js"></script>
+</head>
+<body>
+<div id="albumModal" class="modal">
+  <div class="modal-content">
+    <img id="modalAlbumCover" src="https://via.placeholder.com/150" alt="Album Cover" class="album-image">
+      <div class="modal-header">
+         
+          <h1 id="modalAlbumTitle">Album Title</h1>
+      </div>
+      <div class="modal-body">
+          <div class="album-details">
+              <p id="modalAlbumYear">Year</p>
+              <p id="modalAlbumLength">Total Length</p>
+              <p id="modalAlbumOverview">Overview...</p>
+          </div>
+      </div>
+      <div id="trackList" class="track-list">
+      </div>
+      <div class="modal-footer">
+        <button id="playAllButton">Play All</button>
+      </div>
+  </div>
+</div>
+  <nav class="navbar">
+    <div class="logo1">
+      <img class="logo-desktop" src="assets\logo2.svg" alt="Site Logo">
+      <img class="logo-mobile" src="assets\logomobile.svg">
+    </div>
+    <div class="logo-text">
+      <img src="assets\l2text.svg">
+    </div>
+    <div class="logo">
+      <img class="logo-desktop" src="assets\olibs2.svg" alt="Libs Logo">
+    </div>
+    <div class="logo-text">
+      <img src="assets\libstext.svg">
+    </div>
+    <!--ul class="nav-links">
+      <img href="#home" src="house.svg" alt="Home link">
+      <img href="#about" src="search.svg" alt="Home link">
+      <button>Search</button>
+    </ul!-->
+  </nav>
+<!--div class="overview-container">
+    <p id="nowPlayingOverview" class="overview">Album Overview</p>
+</div-->
+<div class="audio-controls">
+    <div class="audioc-image-container">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Album Cover" id="nowPlayingCover">
+    </div>
+    <div class="track-info">
+        <p id="nowPlayingTitle"></p>
+        <p id="nowPlayingArtist"></p>
+    </div>
+    <div class="progress-bar-container">
+        <span id="current-time">0:00</span>
+        <input type="range" id="progress-bar" value="0" min="0">
+        <span id="total-time">0:00</span>
+    </div>
+    <div class="buttons-container">
+        <button onclick="playPrevious()">
+            <img src="skipleft.svg" alt="Previous">
+        </button>
+        <button onclick="togglePlay()">
+            <img src="pause.svg" alt="Play/Pause" id="playPauseIcon">
+        </button>
+        <button onclick="playNext()">
+            <img src="skipright.svg" alt="Next">
+        </button>
+    </div>
+    <audio id="audioPlayer" controls hidden>
+        Your browser does not support the audio element.
+    </audio>
+</div>
+<div class="grid" id="albumsGrid">
+  <div class="card" onclick="playAlbum('0714cd8137d5c2bdcb38d8b0ae311630')">
+    <div class="image-container">
+      <img src="https://via.placeholder.com/150" alt="Album Cover" class="album-cover">
+      <img src="https://via.placeholder.com/150" alt="Album Cover Hover" class="album-cover-hover">
+    </div> 
+    <p>Loading</p>
+    <p>Loading...</p>
+    <button class="play-button"></button>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', fetchAllAlbums);
+</script>
+</body>
+</html>

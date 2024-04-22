@@ -1,0 +1,453 @@
+/* universal styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  width: 120px; 
+  height: 100vh; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: start;
+  padding: 20px 0; 
+  align-items: center; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.logo1 img {
+  width: 100px;
+}
+.logo img {
+  height: 100px; 
+  width: auto;
+  cursor: pointer;
+}
+
+.logo-text {
+  margin-bottom: 20px;
+}
+
+.logo-text img {
+  width: 78px;
+}
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-mobile {
+  display: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: lighter;
+  font-size: 20px;
+  color: black;
+  width: 100%; 
+  text-align: center; 
+  padding: 10px 0;
+}
+
+.navbar form.search-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto; 
+  width: 90%; 
+  align-items: center; 
+}
+.navbar form.search-form input[type="search"],
+.navbar form.search-form button {
+  width: 100%; 
+  padding: 8px;
+  margin: 5px 0; 
+}
+.navbar form.search-form button {
+  cursor: pointer;
+  border: none;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* album covers */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  overflow: hidden; 
+  cursor: pointer;
+}
+
+.card p {
+  margin: 5px 0;
+  text-align: center;
+  color: #333;
+  font-family: Merriweather;
+}
+
+.card p:hover {
+  text-decoration: underline;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 100%; /* maintains aspect ratio of 1:1 */
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.album-cover-hover {
+  opacity: 0;
+  filter: grayscale(100%) contrast(100%);
+  mix-blend-mode: multiply;
+}
+
+.card:hover .album-cover-hover {
+  opacity: 1;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  background-image: url('playbutton.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card:hover .play-button {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.play-button {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  background-image: url('playbuttonshadow.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center center;
+}
+.play-button:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+.card:hover .play-button {
+  opacity: 1;
+}
+
+/* audio controller element */
+
+.audio-controls {
+  position: fixed;
+  flex-direction: row;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  background-color: whitesmoke;
+  display: flex;
+  gap: 10px; 
+  z-index: 1005;
+  border: 1px solid #ddd;
+  border-radius: 15px 0px;
+}
+.track-info p {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+#nowPlayingTitle {
+  font-weight: bold;
+}
+#nowPlayingArtist {
+  font-weight: normal;
+  transform: scale(1.05);
+}
+#nowPlayingTitle:hover {
+  text-decoration: underline;
+}
+#nowPlayingArtist:hover {
+  transform: scale(1);
+}
+#nowPlayingCover:hover {
+  transform: scale(1.05);
+}
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333;
+  padding: 10px;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+#progress-bar {
+  flex-grow: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #eee;
+  outline: none;
+  cursor: pointer;
+}
+#progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #5a7bd9;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+#progress-bar::-moz-range-thumb {
+  -moz-appearance: none;
+  width: 22px;
+  height: 22px;
+  background: url('sliderbutton.svg') no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+  border: none;
+}
+.audioc-image-container img {
+  width: auto;
+  height: auto;
+  max-width: 80px;
+  padding-right: 12px;
+}
+.audio-controls button {
+  padding: 8px 10px;
+  border: none;
+  background-color: whitesmoke;
+  cursor: pointer;
+  border-radius: 80% 0;
+  font-size: 16px;
+}
+
+/*.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 600,
+  'GRAD' 200,
+  'opsz' 24
+}*/
+
+.audio-controls button:hover {
+  background-color: whitesmoke; 
+}
+
+/* modal pop-up for album info */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #333;
+  position: relative;
+  align-items: center;
+  padding: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 2% auto;
+  transition: width 0.3s ease, height 0.3s ease;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #333;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  border-image: fill 0  radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(0,0,0.2,0.7917367630646008) 0%, rgba(2,13,15,0.6) 100%);
+}
+
+#modalAlbumTitle {
+  color: white;
+  font-family: Merriweather;
+  text-shadow: 1px 1px 1px #ff7f2aff;
+}
+#modalAlbumYear {
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#modalAlbumLength {
+  font-family: Varela Round;
+  padding-bottom: 10px;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#modalAlbumOverview {
+  font-family: Varela Round;
+  font-size: 20px;
+  text-shadow: 1px 1px 1px black;
+}
+#trackList {
+  color: white;
+  font-family: Merriweather;
+  padding: 15px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 1px #ff7f2aff;
+}
+#playAllButton {
+  display: none;
+}
+.track {
+  cursor: pointer;
+  padding: 5px;
+}
+.track:hover {
+  transform: scale(1.05);
+}
+
+.modal-header, .modal-footer {
+  padding: 12px;
+}
+
+.modal-body {
+  color: white;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  font-family: Merriweather;
+}
+
+#modalAlbumCover {
+  display: none;
+}
+
+.album-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+.close-button {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* responsivity */
+
+@media (max-width: 1440px) { /* changes for a more responsive horizontal nav */
+  body {
+      flex-direction: row;
+      padding-top: 60px; 
+  }
+  .navbar {
+      width: 100%; 
+      height: auto;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 20px; 
+      top: 0;
+      left: 0;
+  }
+  .logo img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .logo-text, .logo-desktop {
+    display: none;
+  }
+  .logo-mobile {
+    display: block;
+  }
+  .nav-links {
+      flex-direction: row; 
+      gap: 20px;
+  }
+  .nav-links a {
+      padding: 20px 10px; 
+  }
+  .navbar form.search-form {
+      flex-direction: row; 
+      margin-top: 0; 
+  }
+}
